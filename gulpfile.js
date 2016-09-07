@@ -33,7 +33,7 @@ var path = {
     watch: {
         html:   'src/html/*.html',
         css:    'src/css/main.styl',
-        js:     'src/js/**/*.js'
+        js:     'src/js/**/*.(js|jsx)'
     }
 };
 
