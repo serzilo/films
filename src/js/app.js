@@ -16,7 +16,7 @@ var routes = (
 	<Route path="/" component={AppLayout}>
 		<IndexRoute component={MainPage}/>
 		<Route 
-			path="/search/s=:query"
+			path="/search"
 			component={ResultsList}
 		/>
 		<Route 
