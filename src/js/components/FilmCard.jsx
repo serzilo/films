@@ -1,5 +1,6 @@
 var React = require('react'),
-
+	
+	bindActionCreators = require('redux').bindActionCreators,
 	connect = require('react-redux').connect,
 
 	Title = require('./Title.jsx'),
@@ -22,4 +23,10 @@ function mapStateProps (state) {
 	}
 }
 
-module.exports = connect(mapStateProps)(FilmCard);
+function mapDispatchToProps (dispatch) {
+	return {
+		pageActions: bindActionCreators(pageActions, dispatch)
+	}
+}
+
+module.exports = connect(mapStateProps, mapDispatchToProps)(FilmCard);

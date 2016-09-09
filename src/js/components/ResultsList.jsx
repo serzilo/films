@@ -1,14 +1,19 @@
 var React = require('react'),
-
+	
+	bindActionCreators = require('redux').bindActionCreators,
 	connect = require('react-redux').connect,
 
 	Title = require('./Title.jsx'),
 	FilmSnippet = require('./FilmSnippet.jsx');
 
-var ResultsList = React.createClass({	
-	render: function () {
-		console.log(this.props);
+	pageActions = require('../actions/SearchActions');
 
+var ResultsList = React.createClass({	
+	btnClick: function (e) {
+		e.preventDefault();
+		this.props.pageActions.loading(!this.props.loading);
+	},
+	render: function () {
 		return (
 			<div>
 				<Title>
@@ -26,6 +31,8 @@ var ResultsList = React.createClass({
 						})
 					}
 				</div>
+
+				<button onClick={this.btnClick}>LOAD! {this.props.loading == true ? 'yes' : 'no'}</button>
 			</div>
 		);
 	}
@@ -33,8 +40,15 @@ var ResultsList = React.createClass({
 
 function mapStateProps (state) {
 	return {
-		results: state.FilmsList.results
+		results: state.FilmsList.results,
+		loading: state.FilmsList.loading
 	}
 }
 
-module.exports = connect(mapStateProps)(ResultsList);
+function mapDispatchToProps (dispatch) {
+	return {
+		pageActions: bindActionCreators(pageActions, dispatch)
+	}
+}
+
+module.exports = connect(mapStateProps, mapDispatchToProps)(ResultsList);
