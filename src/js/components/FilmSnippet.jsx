@@ -7,23 +7,24 @@ var FilmSnippet = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<Link to={'/film/' + this.props.id} className="film-item">
+				<Link to={'/film/' + this.props.imdbID} className="film-item">
 					<div>
-						{this.props.id}
+						{this.props.imdbID}
 					</div>
 					<div>
-						{this.props.poster}
+						{this.props.Poster}
 					</div>
 					<div>
-						{this.props.title}
+						{this.props.Title}
 					</div>
 					<div>
-						{this.props.year}
+						{this.props.Year}
 					</div>
 					<div>
-						{this.props.type}
+						{this.props.Type}
 					</div>
 				</Link>
+				<hr />
 			</div>
 		);
 	}

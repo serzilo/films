@@ -2,16 +2,27 @@ var React = require('react');
 
 var DataTable = React.createClass({
 	render: function () {
-		console.log(this.props)
-		for (var p in this.props) {
-			// console.log(p);
-		}
+		var _this = this;
+
 		return (
 			<div>
 				<table>
-					{
-
-					}
+					<tbody>
+						{
+							Object.keys(this.props).map(function (key, i) {
+	  							return (
+	  								<tr key={i}>
+	  									<td>
+	  										{key}
+	  									</td>
+	  									<td>
+	  										{_this.props[key]}
+	  									</td>
+	  								</tr>
+	  							)
+	  						})
+						}
+					</tbody>
 				</table>
 			</div>
 		);
