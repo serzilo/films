@@ -1,13 +1,21 @@
+var Constants = require('../constants/FilmsList');
+
 var actions = {
-	setResults: function (payload) {
+	getDataRequest: function () {
 		return {
-			type: 'SEARCH_RESULTS',
+			type: Constants.GET_DATA_REQUEST,
+			payload: true
+		}
+	},
+	getDataSuccess: function (payload) {
+		return {
+			type: Constants.GET_DATA_SUCCESS,
 			payload: payload
 		}
 	},
-	loading: function (payload) {
+	getDataFailure: function (payload) {
 		return {
-			type: 'LOADING',
+			type: Constants.GET_DATA_FAILURE,
 			payload: payload
 		}
 	}

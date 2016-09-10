@@ -3,15 +3,39 @@ var React = require('react'),
 	bindActionCreators = require('redux').bindActionCreators,
 	connect = require('react-redux').connect,
 
+	axios = require('axios'),
+
 	Title = require('./Title.jsx'),
+	Loader = require('./Loader.jsx'),
 	FilmSnippet = require('./FilmSnippet.jsx');
 
 	pageActions = require('../actions/SearchActions');
 
 var ResultsList = React.createClass({	
-	btnClick: function (e) {
-		e.preventDefault();
-		this.props.pageActions.loading(!this.props.loading);
+	componentDidMount: function () {
+		var query = this.props.location.query.s,
+			_this =  this;
+
+		if (query.length > 0){
+			query =  'http://www.omdbapi.com/?s=' + query;
+
+			this.props.pageActions.getDataRequest();
+
+			axios
+				.get(query)
+				.then(function (response) {
+
+					if (response.data.Search) {
+						_this.props.pageActions.getDataSuccess({results: response.data.Search});
+					} else {
+						_this.props.pageActions.getDataFailure({results: [], error: response.data.Error});
+					}
+					
+				})
+				.catch(function (response) {
+					_this.props.pageActions.getDataFailure({results: [], error: response.data.Error});
+				});
+		}
 	},
 	render: function () {
 		return (
@@ -20,7 +44,11 @@ var ResultsList = React.createClass({
 					Результат поиска
 				</Title>
 
-				{this.props.location.query.s}
+				<Loader show={this.props.loading} />
+
+				{this.props.loading == true ? 'yes' : 'no'}
+
+				<div>{this.props.error}</div>
 
 				<div>
 					{
@@ -31,8 +59,6 @@ var ResultsList = React.createClass({
 						})
 					}
 				</div>
-
-				<button onClick={this.btnClick}>LOAD! {this.props.loading == true ? 'yes' : 'no'}</button>
 			</div>
 		);
 	}
@@ -41,7 +67,8 @@ var ResultsList = React.createClass({
 function mapStateProps (state) {
 	return {
 		results: state.FilmsList.results,
-		loading: state.FilmsList.loading
+		loading: state.FilmsList.loading,
+		error: state.FilmsList.error
 	}
 }
 
