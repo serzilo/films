@@ -8,9 +8,12 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
 
-    stylus = require('gulp-stylus'),
-    prefixer = require('gulp-autoprefixer'),
-    cssmin = require('gulp-minify-css'),
+    cssimport = require("gulp-cssimport"),
+    postcss    = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer'),
+    stylelint = require('stylelint'),
+    cssnano = require('cssnano'),
+
     browserSync = require("browser-sync"),
     reload = browserSync.reload,
 
@@ -27,12 +30,12 @@ var path = {
     },
     src: {
         html:  'src/html/*.html',
-        css:   'src/css/main.styl',
+        css:   'src/css/main.css',
         js:    'src/js/app.js'
     },
     watch: {
         html:   'src/html/*.html',
-        css:    'src/css/main.styl',
+        css:    'src/css/*.css',
         js:     'src/js/**/*.(js|jsx)'
     }
 };
@@ -84,10 +87,30 @@ gulp.task('js:build', function () {
 });
 
 gulp.task('css:build', function () {
+    /*
     gulp.src(path.src.css)
         .pipe(stylus())
         .pipe(prefixer())
         .pipe(cssmin())
+        .pipe(gulp.dest(path.build.css))
+        .pipe(reload({stream: true}));
+    */
+
+    gulp.src(path.src.css)
+        .pipe(cssimport({}))
+        .pipe(postcss([
+            stylelint({
+                'rules': {
+                    'color-hex-case': 'lower',
+                    'font-family-name-quotes': 'always-where-required',
+                    'declaration-bang-space-after': 'never',
+                    'declaration-block-no-duplicate-properties': true,
+                    'block-closing-brace-empty-line-before': 'never'
+                }
+            }),
+            autoprefixer({browsers: ['last 2 versions']}),
+            cssnano()
+        ]))
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 });
