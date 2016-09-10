@@ -3,6 +3,9 @@ var React = require('react'),
 	bindActionCreators = require('redux').bindActionCreators,
 	connect = require('react-redux').connect,
 
+	ReactRouter = require('react-router'),
+	hashHistory = ReactRouter.hashHistory,
+
 	axios = require('axios'),
 
 	Title = require('./Title.jsx'),
@@ -17,7 +20,7 @@ var ResultsList = React.createClass({
 		var query = this.props.location.query.s,
 			_this =  this;
 
-		if (query.length > 0){
+		if (query && query.length > 0){
 			query =  'http://www.omdbapi.com/?s=' + query;
 
 			this.props.pageActions.getDataRequest();
@@ -36,6 +39,8 @@ var ResultsList = React.createClass({
 				.catch(function (response) {
 					_this.props.pageActions.getDataFailure({results: [], error: response.data.Error});
 				});
+		} else {
+			hashHistory.replace({pathname: '/'});
 		}
 	},
 	componentWillUnmount: function () {

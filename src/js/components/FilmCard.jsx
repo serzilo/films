@@ -47,7 +47,7 @@ var FilmCard = React.createClass({
 				<Loader show={this.props.loading} />
 
 				<Error error={this.props.error} />
-				
+
 				<DataTable {...this.props.film} />
 			</div>
 		);

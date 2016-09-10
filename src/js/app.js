@@ -6,6 +6,7 @@ var React = require('react'),
 	Route = ReactRouter.Route,
 	IndexRoute = ReactRouter.IndexRoute,
 	hashHistory = ReactRouter.hashHistory,
+	Redirect = ReactRouter.Redirect,
 
 	Provider = require('react-redux').Provider,
 	ConfigureStore = require('./store/ConfigureStore'),
@@ -28,10 +29,7 @@ var routes = (
 				path="/film/:imdbId"
 				component={FilmCard}
 			/>
-			<Route 
-				path="*"
-				component={MainPage}
-			/>
+			<Redirect from='*' to='/' />
 		</Route>
 	</Router>
 );

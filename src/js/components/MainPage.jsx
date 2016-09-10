@@ -6,6 +6,9 @@ var React = require('react'),
 	Title = require('./Title.jsx');
 
 var MainPage = React.createClass({
+	componentDidMount: function () {
+		this.refs.searchInput.focus();
+	},
 	handleSubmit: function (event) {
 		event.preventDefault();
 
