@@ -16,6 +16,8 @@ function ConfigureStore (state, action) {
 	 		return Object.assign({}, state, action.payload, {loading: false, error: false});
 	 	case Constants.GET_DATA_FAILURE:
 	 		return Object.assign({}, state, action.payload, {loading: false});
+	 	case Constants.CLEAR_STORE:
+	 		return Object.assign({}, initialState);
 	 	default: 
 			return state;
 	}

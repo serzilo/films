@@ -11,9 +11,14 @@ var FilmSnippet = React.createClass({
 					<div>
 						{this.props.imdbID}
 					</div>
-					<div>
-						{this.props.Poster}
-					</div>
+
+					{
+						this.props.Poster != 'N/A' ? 
+						(<div>
+							<img src={this.props.Poster} alt="" />
+						</div>) : ('')
+					}
+
 					<div>
 						{this.props.Title}
 					</div>

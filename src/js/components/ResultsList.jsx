@@ -7,6 +7,7 @@ var React = require('react'),
 
 	Title = require('./Title.jsx'),
 	Loader = require('./Loader.jsx'),
+	Error = require('./Error.jsx'),
 	FilmSnippet = require('./FilmSnippet.jsx');
 
 	pageActions = require('../actions/SearchActions');
@@ -37,18 +38,19 @@ var ResultsList = React.createClass({
 				});
 		}
 	},
+	componentWillUnmount: function () {
+		this.props.pageActions.clearStore();
+	},
 	render: function () {
 		return (
 			<div>
 				<Title>
-					Результат поиска
+					Результаты поиска
 				</Title>
 
 				<Loader show={this.props.loading} />
 
-				{this.props.loading == true ? 'yes' : 'no'}
-
-				<div>{this.props.error}</div>
+				<Error error={this.props.error} />
 
 				<div>
 					{

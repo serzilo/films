@@ -1,4 +1,4 @@
-var Constants = require('../constants/FilmsList');
+var Constants = require('../constants/FilmCard');
 
 var actions = {
 	getDataRequest: function () {

@@ -2,15 +2,10 @@ var React = require('react');
 
 var Loader = React.createClass({
 	render: function () {
-
 		return (
-			<div>Loading</div>
-
-
-			
-				// return (this.props.show ? <div>Loading</div> : <div>123</div>)
-			
-			
+			<div style={{display: this.props.show ? 'block' : 'none'}}>
+				Загрузка данных...
+			</div>
 		);
 	}
 });

@@ -3,14 +3,51 @@ var React = require('react'),
 	bindActionCreators = require('redux').bindActionCreators,
 	connect = require('react-redux').connect,
 
+	axios = require('axios'),
+
 	Title = require('./Title.jsx'),
+	Loader = require('./Loader.jsx'),
+	Error = require('./Error.jsx'),
 	DataTable = require('./DataTable.jsx');
 
 var FilmCard = React.createClass({
+	componentDidMount: function () {
+		var query = this.props.params.imdbId,
+			_this =  this;
+
+		if (query.length > 0){
+			query =  'http://www.omdbapi.com/?i=' + query;
+
+			this.props.pageActions.getDataRequest();
+
+			axios
+				.get(query)
+				.then(function (response) {
+
+					if (!response.data.Error) {
+						_this.props.pageActions.getDataSuccess({film: response.data});
+					} else {
+						_this.props.pageActions.getDataFailure({film: {}, error: response.data.Error});
+					}
+					
+				})
+				.catch(function (response) {
+					_this.props.pageActions.getDataFailure({film: {}, error: response.data.Error});
+				});
+		}
+	},
+	componentWillUnmount: function () {
+		this.props.pageActions.clearStore();
+	},
 	render: function () {
 		return (
 			<div>
-				<Title>FilmCard {this.props.params.imdbId}</Title>
+				<Title>Карточка фильма</Title>
+
+				<Loader show={this.props.loading} />
+
+				<Error error={this.props.error} />
+				
 				<DataTable {...this.props.film} />
 			</div>
 		);
@@ -19,7 +56,9 @@ var FilmCard = React.createClass({
 
 function mapStateProps (state) {
 	return {
-		film: state.FilmCard.film
+		film: state.FilmCard.film,
+		loading: state.FilmCard.loading,
+		error: state.FilmCard.error
 	}
 }
 

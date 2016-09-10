@@ -11,14 +11,24 @@ var DataTable = React.createClass({
 						{
 							Object.keys(this.props).map(function (key, i) {
 	  							return (
-	  								<tr key={i}>
+									<tr key={i}>
 	  									<td>
 	  										{key}
 	  									</td>
 	  									<td>
-	  										{_this.props[key]}
+	  										{
+	  											key == 'Poster' ? 
+	  												_this.props[key] == 'N/A' ?
+	  													(<div>N/A</div>)
+	  												:
+	  													(<img src={_this.props[key]} alt="" />) 
+	  											
+	  											: 
+	  												(<div>{_this.props[key]}</div>)
+	  										}
+	  										
 	  									</td>
-	  								</tr>
+	  								</tr>	  
 	  							)
 	  						})
 						}
