@@ -6,31 +6,23 @@ var React = require('react'),
 var FilmSnippet = React.createClass({
 	render: function () {
 		return (
-			<div>
-				<Link to={'/film/' + this.props.imdbID} className="film-item">
-					<div>
-						{this.props.imdbID}
-					</div>
-
-					{
-						this.props.Poster != 'N/A' ? 
-						(<div>
-							<img src={this.props.Poster} alt="" />
-						</div>) : ('')
-					}
-
-					<div>
+			<Link to={'/film/' + this.props.imdbID} className={'film-item' + (this.props.last == true ? ' film-item_last' : '')}>
+				{
+					this.props.Poster != 'N/A' ? 
+					(<img src={this.props.Poster} alt="" className="film-item__poster" />) : ('')
+				}
+				<div className="film-item__description">
+					<div className="film-item__title">
 						{this.props.Title}
 					</div>
 					<div>
-						{this.props.Year}
+						Year: {this.props.Year}
 					</div>
 					<div>
-						{this.props.Type}
+						Type: {this.props.Type}
 					</div>
-				</Link>
-				<hr />
-			</div>
+				</div>
+			</Link>
 		);
 	}
 });

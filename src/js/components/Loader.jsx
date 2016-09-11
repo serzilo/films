@@ -3,8 +3,8 @@ var React = require('react');
 var Loader = React.createClass({
 	render: function () {
 		return (
-			<div style={{display: this.props.show ? 'block' : 'none'}}>
-				Загрузка данных...
+			<div className={'container container_loader' + (this.props.show ? '' : ' hidden')}>
+				Загрузка...
 			</div>
 		);
 	}

@@ -1,0 +1,22 @@
+.data-table {
+	width: 100%;
+	font-size: 15px;
+}
+
+.data-table tr:hover {
+	background: #ffeba0;
+}
+
+.data-table__td {
+	padding: 10px;
+	vertical-align: top;
+}
+
+.data-table__td_title {
+	color: #7a90a0;
+	width: 14%;
+}
+
+.data-table__image {
+	max-width: 100px;
+}

@@ -8,6 +8,7 @@ var React = require('react'),
 	Title = require('./Title.jsx'),
 	Loader = require('./Loader.jsx'),
 	Error = require('./Error.jsx'),
+	BackLink = require('./BackLink.jsx'),
 	DataTable = require('./DataTable.jsx');
 
 var FilmCard = React.createClass({
@@ -48,7 +49,11 @@ var FilmCard = React.createClass({
 
 				<Error error={this.props.error} />
 
-				<DataTable {...this.props.film} />
+				<div className="container">
+					<DataTable {...this.props.film} />
+				</div>
+
+				<BackLink />
 			</div>
 		);
 	}

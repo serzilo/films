@@ -11,6 +11,7 @@ var React = require('react'),
 	Title = require('./Title.jsx'),
 	Loader = require('./Loader.jsx'),
 	Error = require('./Error.jsx'),
+	BackLink = require('./BackLink.jsx'),
 	FilmSnippet = require('./FilmSnippet.jsx');
 
 	pageActions = require('../actions/SearchActions');
@@ -37,6 +38,7 @@ var ResultsList = React.createClass({
 					
 				})
 				.catch(function (response) {
+					console.log(response)
 					_this.props.pageActions.getDataFailure({results: [], error: response.data.Error});
 				});
 		} else {
@@ -47,6 +49,8 @@ var ResultsList = React.createClass({
 		this.props.pageActions.clearStore();
 	},
 	render: function () {
+		var _this = this;
+
 		return (
 			<div>
 				<Title>
@@ -57,15 +61,17 @@ var ResultsList = React.createClass({
 
 				<Error error={this.props.error} />
 
-				<div>
+				<div className="container">
 					{
-						this.props.results.map(function (prop, i) { 
+						this.props.results.map(function (prop, i) {
 							return (
-								<FilmSnippet key={i} {...prop} />
+								<FilmSnippet key={i} {...prop} last={_this.props.results.length - 1 == i ? true : false} />
 							)
 						})
 					}
 				</div>
+
+				<BackLink />
 			</div>
 		);
 	}
