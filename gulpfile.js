@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     postcss    = require('gulp-postcss'),
     autoprefixer = require('autoprefixer'),
     stylelint = require('stylelint'),
+    stylelintConfig = require('./stylelint.config.js'),
     cssnano = require('cssnano'),
 
     browserSync = require("browser-sync"),
@@ -87,27 +88,10 @@ gulp.task('js:build', function () {
 });
 
 gulp.task('css:build', function () {
-    /*
-    gulp.src(path.src.css)
-        .pipe(stylus())
-        .pipe(prefixer())
-        .pipe(cssmin())
-        .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
-    */
-
     gulp.src(path.src.css)
         .pipe(cssimport({}))
         .pipe(postcss([
-            stylelint({
-                'rules': {
-                    'color-hex-case': 'lower',
-                    'font-family-name-quotes': 'always-where-required',
-                    'declaration-bang-space-after': 'never',
-                    'declaration-block-no-duplicate-properties': true,
-                    'block-closing-brace-empty-line-before': 'never'
-                }
-            }),
+            stylelint(stylelintConfig),
             autoprefixer({browsers: ['last 2 versions']}),
             cssnano()
         ]))
