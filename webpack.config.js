@@ -3,6 +3,7 @@ var path = require('path'),
 
 module.exports = {
 	//devtool: 'cheap-module-eval-source-map',
+	devtool: false,
 	entry: [
 		'webpack-hot-middleware/client',
 		'babel-polyfill',
@@ -15,7 +16,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
+		new webpack.HotModuleReplacementPlugin()
 	],
 	module: {
 		preLoaders: [
