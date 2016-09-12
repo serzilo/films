@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 var React = require('react'),
 	ReactDom = require('react-dom'),
 
@@ -35,3 +37,4 @@ var routes = (
 );
 
 ReactDom.render(<Provider store={Store}>{routes}</Provider>, document.getElementById('app'));
+

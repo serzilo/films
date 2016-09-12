@@ -7,7 +7,7 @@ var initialState = {
 };
 
 function ConfigureStore (state, action) {
-	var state = state || initialState;
+	state = state || initialState;
 
 	switch (action.type) {
 		case Constants.GET_DATA_REQUEST:

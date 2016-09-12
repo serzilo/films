@@ -12,7 +12,7 @@ var React = require('react'),
 	Loader = require('./Loader.jsx'),
 	Error = require('./Error.jsx'),
 	BackLink = require('./BackLink.jsx'),
-	FilmSnippet = require('./FilmSnippet.jsx');
+	FilmSnippet = require('./FilmSnippet.jsx'),
 
 	pageActions = require('../actions/SearchActions');
 

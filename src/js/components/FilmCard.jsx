@@ -9,7 +9,9 @@ var React = require('react'),
 	Loader = require('./Loader.jsx'),
 	Error = require('./Error.jsx'),
 	BackLink = require('./BackLink.jsx'),
-	DataTable = require('./DataTable.jsx');
+	DataTable = require('./DataTable.jsx'),
+
+	pageActions = require('../actions/FilmCardActions');
 
 var FilmCard = React.createClass({
 	componentDidMount: function () {
