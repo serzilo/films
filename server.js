@@ -3,12 +3,14 @@ var webpack = require('webpack'),
 	webpackHotMiddleware = require('webpack-hot-middleware'),
 	config = require('./webpack.config');
 
-var app = new (require('express'))(),
+var express = require('express'),
+	app = new (express)(),
 	port = 3000,
 	compiler = webpack(config);
 
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
+app.use(express.static('build'));
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/build/index.html');

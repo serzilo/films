@@ -37,4 +37,3 @@ var routes = (
 );
 
 ReactDom.render(<Provider store={Store}>{routes}</Provider>, document.getElementById('app'));
-
