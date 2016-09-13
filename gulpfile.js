@@ -102,7 +102,7 @@ gulp.task('css:build', function () {
 gulp.task('build', [
     'html:build',
     'css:build',
-    'js:build'
+    //'js:build'
 ]);
 
 gulp.task('watch', function () {
@@ -114,9 +114,11 @@ gulp.task('watch', function () {
         gulp.start('css:build');
     });
 
+    /*
     watch([path.watch.js], function(event, cb) {
         gulp.start('js:build');
     });
+    */
 });
 
 gulp.task('webserver', function () {
@@ -124,6 +126,6 @@ gulp.task('webserver', function () {
 });
 
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+//gulp.task('default', ['build', 'webserver', 'watch']);
 //alias gulp='node_modules/.bin/gulp'
-//gulp.task('default', ['build',  'watch']);
+gulp.task('default', ['build',  'watch']);
