@@ -1,9 +1,10 @@
-var React = require('react');
+var React = require('react'),
+	styles = require('../stylesConfig.json');
 
 var Title = React.createClass({
 	render: function () {
 		return (
-			<h1 className="title">
+			<h1 className={styles.title}>
 				{this.props.children}
 			</h1>
 		);

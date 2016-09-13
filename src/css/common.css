@@ -1,4 +1,4 @@
-.app-container {
+.app_container {
 	margin: 0 auto;
 	max-width: 900px;
 }
@@ -37,4 +37,3 @@
 .text__bold {
 	font-weight: bold;
 }
-

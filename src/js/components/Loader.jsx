@@ -1,9 +1,10 @@
-var React = require('react');
+var React = require('react'),
+	styles = require('../stylesConfig.json');
 
 var Loader = React.createClass({
 	render: function () {
 		return (
-			<div className={'container container_loader' + (this.props.show ? '' : ' hidden')}>
+			<div className={styles.container + ' ' + styles.container_loader + (this.props.show ? '' : ' ' + styles.hidden)}>
 				Загрузка...
 			</div>
 		);

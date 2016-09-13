@@ -1,4 +1,4 @@
-.back-link {
+.back_link {
 	display: block;
 	text-decoration: none;
 	text-align: center;
@@ -8,7 +8,7 @@
 	position: relative;
 }
 
-.back-link:before {
+.back_link:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -18,6 +18,6 @@
 	left: 0;
 }
 
-.back-link:hover {
+.back_link:hover {
 	color: #57a3ea;
 }

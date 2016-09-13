@@ -11,7 +11,9 @@ var React = require('react'),
 	BackLink = require('./BackLink.jsx'),
 	DataTable = require('./DataTable.jsx'),
 
-	pageActions = require('../actions/FilmCardActions');
+	pageActions = require('../actions/FilmCardActions'),
+
+	styles = require('../stylesConfig.json');
 
 var FilmCard = React.createClass({
 	componentDidMount: function () {
@@ -51,7 +53,7 @@ var FilmCard = React.createClass({
 
 				<Error error={this.props.error} />
 
-				<div className="container">
+				<div className={styles.container}>
 					<DataTable {...this.props.film} />
 				</div>
 

@@ -14,6 +14,8 @@ var React = require('react'),
 	BackLink = require('./BackLink.jsx'),
 	FilmSnippet = require('./FilmSnippet.jsx'),
 
+	styles = require('../stylesConfig.json'),
+
 	pageActions = require('../actions/SearchActions');
 
 var ResultsList = React.createClass({	
@@ -61,7 +63,7 @@ var ResultsList = React.createClass({
 
 				<Error error={this.props.error} />
 
-				<div className="container">
+				<div className={styles.container}>
 					{
 						this.props.results.map(function (prop, i) {
 							return (

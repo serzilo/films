@@ -1,4 +1,4 @@
-.film-item {
+.film_item {
 	display: block;
 	text-decoration: none;
 	overflow: hidden;
@@ -9,30 +9,30 @@
 	font-size: 14px;
 }
 
-.film-item:hover {
+.film_item:hover {
 	background: #ecf5fd;
 }
 
-.film-item:active {
+.film_item:active {
 	background: #b8cde3;
 }
 
-.film-item_last {
+.film_item_last {
 	border-bottom: 0;
 }
 
-.film-item__poster {
+.film_item__poster {
 	display: block;
 	float: left;
 	margin-right: 10px;
 	width: 100px;
 }
 
-.film-item__description {
+.film_item__description {
 	overflow: hidden;
 }
 
-.film-item__title {
+.film_item__title {
 	font-weight: bold;
 	font-size: 15px;
 }

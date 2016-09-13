@@ -1,12 +1,14 @@
 var React = require('react'),
 
 	ReactRouter = require('react-router'),
-	Link = ReactRouter.Link;
+	Link = ReactRouter.Link,
+
+	styles = require('../stylesConfig.json');
 
 var BackLink = React.createClass({
 	render: function () {
 		return (
-			<Link to={'/'} className="back-link">
+			<Link to={'/'} className={styles.back_link}>
 				Перейти к поиску
 			</Link>
 		);

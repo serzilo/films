@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
+    fs = require('fs'),
 
     cssimport = require("gulp-cssimport"),
     postcss    = require('gulp-postcss'),
@@ -14,6 +15,7 @@ var gulp = require('gulp'),
     stylelint = require('stylelint'),
     stylelintConfig = require('./stylelint.config.js'),
     cssnano = require('cssnano'),
+    modules = require('postcss-modules'),
 
     browserSync = require("browser-sync"),
     reload = browserSync.reload,
@@ -92,6 +94,15 @@ gulp.task('css:build', function () {
         .pipe(cssimport({}))
         .pipe(postcss([
             stylelint(stylelintConfig),
+            modules({
+                getJSON: function(cssFileName, json) {
+                    var path = require('path'),
+                        cssName = path.basename(cssFileName, '.css'),
+                        jsonFileName  = path.resolve('./src/js/stylesConfig.json');
+
+                    fs.writeFileSync(jsonFileName, JSON.stringify(json));
+                }
+            }),
             autoprefixer({browsers: ['last 2 versions']}),
             cssnano()
         ]))

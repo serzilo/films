@@ -3,6 +3,8 @@ var React = require('react'),
 	ReactRouter = require('react-router'),
 	hashHistory = ReactRouter.hashHistory,
 
+	styles = require('../stylesConfig.json'),
+
 	Title = require('./Title.jsx');
 
 var MainPage = React.createClass({
@@ -30,11 +32,11 @@ var MainPage = React.createClass({
 					Поиск фильмов
 				</Title>
 
-				<div className="container container_search">
-					<div className="search">
+				<div className={styles.container + ' ' +styles.container_search}>
+					<div className={styles.search}>
 						<form onSubmit={this.handleSubmit}>
-							<input className="search__input" ref="searchInput" type="text" placeholder="Введите фильм" />
-							<button className="search__submit" type="submit">Найти</button>
+							<input className={styles.search__input} ref="searchInput" type="text" placeholder="Введите фильм" />
+							<button className={styles.search__submit} type="submit">Найти</button>
 						</form>
 					</div>
 				</div>
