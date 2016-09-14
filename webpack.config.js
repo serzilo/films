@@ -1,9 +1,12 @@
 var path = require('path'),
-	webpack = require('webpack');
+	webpack = require('webpack'),
+	NODE_ENV = process.env.NODE_ENV || 'dev';
+
+console.log('NODE_ENV: ' + NODE_ENV);
 
 module.exports = {
 	//devtool: 'cheap-module-eval-source-map',
-	devtool: false,
+	devtool: NODE_ENV == 'dev' ? 'source-map' : null,
 	entry: [
 		'webpack-hot-middleware/client',
 		'babel-polyfill',
@@ -41,3 +44,15 @@ module.exports = {
 		]
 	}
 };
+
+if (NODE_ENV == 'production') {
+	module.exports.plugins.push(
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false,
+				drop_console: true,
+				unsafe: true
+			}
+		})
+	);
+}
