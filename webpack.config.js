@@ -17,6 +17,7 @@ module.exports = {
 		filename: 'bundle.js',
 		publicPath: '/js/'
 	},
+
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin()
@@ -32,7 +33,10 @@ module.exports = {
 			}
 		],
 		loaders: [
-			{test: /\.json$/, loader: 'json-loader'},
+			{
+				test: /\.json$/, 
+				loader: 'json-loader'
+			},
 			{
 				loaders: ['react-hot', 'babel-loader'],
 				include: [
