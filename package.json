@@ -40,8 +40,7 @@
     "redux": "^3.6.0"
   },
   "scripts": {
-    "dev": "node browsersync.js",
-    "dev2": "node server.js",
-    "build": "NODE_ENV=production node server.js"
+    "dev": "node builder.js",
+    "build": "NODE_ENV=production node builder.js"
   }
 }
