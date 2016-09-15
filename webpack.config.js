@@ -5,7 +5,6 @@ var path = require('path'),
 console.log('NODE_ENV: ' + NODE_ENV);
 
 module.exports = {
-	//devtool: 'cheap-module-eval-source-map',
 	devtool: NODE_ENV == 'dev' ? 'source-map' : null,
 	entry: [
 		'webpack-hot-middleware/client',

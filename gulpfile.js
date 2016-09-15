@@ -2,11 +2,6 @@
 
 var gulp = require('gulp'),
 	watch = require('gulp-watch'),
-    browserify = require('browserify'),
-    reactify = require('reactify'),
-    uglify = require('gulp-uglify'),
-    source = require('vinyl-source-stream'),
-    buffer = require('vinyl-buffer'),
     fs = require('fs'),
 
     cssimport = require("gulp-cssimport"),
@@ -15,78 +10,26 @@ var gulp = require('gulp'),
     stylelint = require('stylelint'),
     stylelintConfig = require('./stylelint.config.js'),
     cssnano = require('cssnano'),
-    modules = require('postcss-modules'),
-
-    browserSync = require("browser-sync"),
-    reload = browserSync.reload,
-
-    args = require('yargs').argv,
-    gulpif = require('gulp-if');
-
+    modules = require('postcss-modules');
 
 var path = {
     build: {
         html: 'build/',
-        css:  'build/css/',
-        js:   'build/js/',
-        jsBundleName: 'bundle.js'
+        css:  'build/css/'
     },
     src: {
         html:  'src/html/*.html',
-        css:   'src/css/main.css',
-        js:    'src/js/app.js'
+        css:   'src/css/main.css'
     },
     watch: {
         html:   'src/html/*.html',
-        css:    'src/css/*.css',
-        js:     'src/js/**/*.(js|jsx)'
+        css:    'src/css/*.css'
     }
 };
 
-var config = {
-    server: {
-        baseDir: "./build"
-    },
-    tunnel: true,
-    host: 'localhost',
-    port: 9000,
-    logPrefix: "Local host"
-};
-
-
 gulp.task('html:build', function () {
     gulp.src(path.src.html)
-        .pipe(gulp.dest(path.build.html))
-        .pipe(reload({stream: true}));
-});
-
-
-gulp.task('js:build', function () {
-    /*
-    gulp --env dev
-    gulp --env prod
-    gulp // default dev
-    */
-
-    var env = args.env || 'dev',
-        settings = {
-            dev: {
-                browserify: {debug: true}
-            },
-            prod: {
-                browserify: {}
-            }
-        };
-
-
-    return browserify(path.src.js, settings[env].browserify)
-        .transform(reactify)
-        .bundle()
-        .pipe(source(path.build.jsBundleName))
-        .pipe(buffer())
-        .pipe(gulpif(env != 'dev', uglify()))
-        .pipe(gulp.dest(path.build.js))
-        .pipe(reload({stream: true}));
+        .pipe(gulp.dest(path.build.html));
 });
 
 gulp.task('css:build', function () {
@@ -106,14 +49,12 @@ gulp.task('css:build', function () {
             autoprefixer({browsers: ['last 2 versions']}),
             cssnano()
         ]))
-        .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
+        .pipe(gulp.dest(path.build.css));
 });
 
 gulp.task('build', [
     'html:build',
-    'css:build',
-    //'js:build'
+    'css:build'
 ]);
 
 gulp.task('watch', function () {
@@ -124,19 +65,7 @@ gulp.task('watch', function () {
     watch([path.watch.css], function(event, cb) {
         gulp.start('css:build');
     });
-
-    /*
-    watch([path.watch.js], function(event, cb) {
-        gulp.start('js:build');
-    });
-    */
 });
 
-gulp.task('webserver', function () {
-    browserSync(config);
-});
-
-
-//gulp.task('default', ['build', 'webserver', 'watch']);
 //alias gulp='node_modules/.bin/gulp'
 gulp.task('default', ['build',  'watch']);
