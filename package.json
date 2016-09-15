@@ -11,7 +11,7 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-runtime": "^6.11.6",
-    "browser-sync": "^2.4.0",
+    "browser-sync": "^2.16.0",
     "browserify": "*",
     "cssnano": "^3.7.4",
     "eslint": "^3.5.0",
@@ -48,6 +48,7 @@
   },
   "scripts": {
     "dev": "node server.js",
+    "dev2": "node browsersync.js",
     "build": "NODE_ENV=production node server.js"
   }
 }
