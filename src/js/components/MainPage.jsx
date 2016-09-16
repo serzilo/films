@@ -3,9 +3,9 @@ var React = require('react'),
 	ReactRouter = require('react-router'),
 	hashHistory = ReactRouter.hashHistory,
 
-	styles = require('../stylesConfig.json'),
+	Title = require('./Title.jsx'),
 
-	Title = require('./Title.jsx');
+	styles = require('../stylesConfig.json');
 
 var MainPage = React.createClass({
 	componentDidMount: function () {

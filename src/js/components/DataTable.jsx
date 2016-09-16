@@ -27,7 +27,6 @@ var DataTable = React.createClass({
 	  											: 
 	  												(<div>{_this.props[key]}</div>)
 	  										}
-	  										
 	  									</td>
 	  								</tr>	  
 	  							)

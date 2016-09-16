@@ -14,9 +14,9 @@ var React = require('react'),
 	BackLink = require('./BackLink.jsx'),
 	FilmSnippet = require('./FilmSnippet.jsx'),
 
-	styles = require('../stylesConfig.json'),
+	pageActions = require('../actions/SearchActions'),
 
-	pageActions = require('../actions/SearchActions');
+	styles = require('../stylesConfig.json');
 
 var ResultsList = React.createClass({	
 	componentDidMount: function () {
